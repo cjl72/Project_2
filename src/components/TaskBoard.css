@@ -1,5 +1,5 @@
 .board {
-    width: 1024px;
+    max-width: 1024px;
     justify-content: space-evenly;
     display: flex;
     min-height: 100vh;
@@ -9,4 +9,18 @@
     width: 25%;
     text-align: center;
     border-style: solid;
+}
+@media only screen and (max-width: 1024px){
+    .board{
+        width: 900px;
+    }
+    .board_piece {
+        flex-direction: row;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .web-container {
+        margin: 0 15px;
+        width: calc(100% - 30px);
+    }
 }

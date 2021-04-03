@@ -7,13 +7,13 @@ import PageTabs  from './PageTabs';
 
 class App extends React.Component {
     state = {
-        view: 'task board'
-    }
+        view: 'task board',
+        windowWidth: window.innerWidth
+    };
 
     onViewChange(view) {
         this.setState({ view });
     }
-
 
     wrapPage(jsx) {
         const { view } = this.state;
