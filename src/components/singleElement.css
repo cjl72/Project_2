@@ -1,0 +1,9 @@
+.singleElement {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+.board_piece {
+    width:400px;
+}

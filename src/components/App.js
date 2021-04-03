@@ -7,6 +7,7 @@ import ToDo from './ToDo';
 import InProgress from './InProgress';
 import Review from './Review';
 import Done from './Done';
+import './singleElement.css';
 
 const LARGE_DESKTOP_BREAKPOINT = 1366;
 const SMALL_DESKTOP_BREAKPOINT = 1024;
@@ -72,7 +73,9 @@ class App extends React.Component {
                 ));
             case 'mobile':
                 return (this.wrapPage(
-                    <ToDo />
+                    <div className='singleElement'>
+                        <ToDo />
+                    </div>
                 ));
 
         }
