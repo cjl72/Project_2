@@ -4,12 +4,17 @@ import axios from 'axios';
 import TaskBoard from './TaskBoard';
 import Task from './Task';
 import PageTabs  from './PageTabs';
+import ToDo from './ToDo';
+import InProgress from './InProgress';
+import Review from './Review';
+import Done from './Done';
 
 class App extends React.Component {
     state = {
         view: 'task board',
         windowWidth: window.innerWidth
     };
+
 
     onViewChange(view) {
         this.setState({ view });
@@ -33,6 +38,22 @@ class App extends React.Component {
             case 'task board' :
                 return (this.wrapPage(
                     <TaskBoard />
+                ));
+            case 'todo':
+                return (this.wrapPage(
+                    <ToDo />
+                ));
+            case 'inprogress':
+                return (this.wrapPage(
+                    <InProgress />
+                ));
+            case 'review':
+                return (this.wrapPage(
+                    <Review />
+                ));
+            case 'done':
+                return (this.wrapPage(
+                    <Done />
                 ));
         }
         // No Default

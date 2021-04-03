@@ -9,18 +9,32 @@
     width: 25%;
     text-align: center;
     border-style: solid;
+    justify-content: center;
+    display: flex;
 }
 @media only screen and (max-width: 1024px){
     .board{
         width: 900px;
     }
-    .board_piece {
-        flex-direction: row;
-    }
 }
 @media only screen and (max-width: 900px) {
-    .web-container {
-        margin: 0 15px;
-        width: calc(100% - 30px);
+    .board {
+        justify-content: center;
+        width: auto;
+    }
+    .board_piece {
+        width: 400px;
+    }
+    .todo {
+        justify-content: center;
+    }
+    .inprogress {
+        display: none;
+    }
+    .review {
+        display: none;
+    }
+    .done {
+        display: none;
     }
 }
