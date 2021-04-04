@@ -8,6 +8,7 @@ import InProgress from './InProgress';
 import Review from './Review';
 import Done from './Done';
 import './singleElement.css';
+import DropdownMenu from './DropdownMenu';
 
 const LARGE_DESKTOP_BREAKPOINT = 1366;
 const SMALL_DESKTOP_BREAKPOINT = 1024;
@@ -69,12 +70,17 @@ class App extends React.Component {
                 ));
             case 'tablet':
                 return (this.wrapPage(
-                    <TaskBoard />
+                    <div className='singleElement'>
+                        <ToDo />
+                    </div>
                 ));
             case 'mobile':
                 return (this.wrapPage(
+                    <div>
+                        <DropdownMenu />
                     <div className='singleElement'>
                         <ToDo />
+                    </div>
                     </div>
                 ));
 

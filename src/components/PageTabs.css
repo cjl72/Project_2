@@ -1,15 +1,16 @@
 .page-tabs .nav-link {
     cursor: pointer;
 }
-
-.page-tabs .nav-link.active {
-    color: blue;
-}
-.nav-item {
-    width: 100px;
+.page-tabs {
+    display: flex;
+    align-items: flex-start;
 }
 .page-tabs {
     display: flex;
     justify-content: center;
     list-style-type: none;
+}
+button {
+    width: 200px;
+    height: 25px;
 }
