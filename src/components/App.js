@@ -8,7 +8,7 @@ import InProgress from './InProgress';
 import Review from './Review';
 import Done from './Done';
 import './singleElement.css';
-import DropdownMenu from './DropdownMenu';
+import DropdownMenu from "./DropdownMenu";
 
 const LARGE_DESKTOP_BREAKPOINT = 1366;
 const SMALL_DESKTOP_BREAKPOINT = 1024;
@@ -18,13 +18,32 @@ class App extends React.Component {
     state = {
         view: 'task board',
         browserWidth: 0,
-        breakpoint: 'large-desktop'
+        breakpoint: 'large-desktop',
+        singlePage: 'ToDo'
     };
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
     }
+
+    getSingleView() {
+        const singlePage = this.state.singlePage;
+
+        if (singlePage === 'ToDo') {
+            return <ToDo/>;
+        }
+        if (singlePage === 'InProgress') {
+            return <InProgress/>;
+        }
+        if (singlePage === 'Review') {
+            return <Review/>;
+        }
+        if (singlePage === 'Done') {
+            return <Done/>;
+        }
+    }
+
 
     handleResize = () => {
         const browserWidth = window.innerWidth;
@@ -38,54 +57,57 @@ class App extends React.Component {
             breakpoint = 'mobile';
         }
 
-        this.setState({ breakpoint, browserWidth });
+        this.setState({breakpoint, browserWidth});
     }
 
     onViewChange(view) {
-        this.setState({ view });
+        this.setState({view});
     }
 
     wrapPage(jsx) {
-        const { view } = this.state;
+        const {view} = this.state;
         return (
             <div className="container">
-                <PageTabs currentView={ view }
-                           onViewChange={this.onViewChange.bind(this)}/>
+                <PageTabs currentView={view}
+                          onViewChange={this.onViewChange.bind(this)}/>
                 {jsx}
             </div>
         )
     }
 
     render() {
-        const { breakpoint } = this.state;
+        const {breakpoint} = this.state;
+        const page = this.getSingleView();
 
         switch (breakpoint) {
             case 'large-desktop' :
                 return (this.wrapPage(
-                    <TaskBoard />
+                    <TaskBoard/>
                 ));
             case 'small-desktop':
                 return (this.wrapPage(
-                    <TaskBoard />
+                    <TaskBoard/>
                 ));
             case 'tablet':
                 return (this.wrapPage(
-                    <div className='singleElement'>
-                        <ToDo />
+                    <div>
+                        <DropdownMenu/>
+                        <div className="singleElement">
+                            {page}
+                        </div>
                     </div>
                 ));
             case 'mobile':
                 return (this.wrapPage(
                     <div>
-                        <DropdownMenu />
-                    <div className='singleElement'>
-                        <ToDo />
-                    </div>
+                        <DropdownMenu/>
+                        <div className="singleElement">
+                            {page}
+                        </div>
                     </div>
                 ));
-
+            // No Default
         }
-        // No Default
     }
 }
 

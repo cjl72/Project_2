@@ -1,5 +1,6 @@
 .page-tabs .nav-link {
     cursor: pointer;
+    margin: 10px;
 }
 .page-tabs {
     display: flex;
