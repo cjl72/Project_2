@@ -5,16 +5,17 @@ import InProgress from './InProgress';
 import Review from './Review';
 import Done  from './Done';
 
-class TaskBoard extends React.Component {
-    render() {
-        return (
+const TaskBoard = (props) => {
+
+    return (
+
             <div className="board">
-                <ToDo />
-                <InProgress />
-                <Review />
-                <Done />
+                <ToDo content={props.todo}/>
+                <InProgress content={props.inprogress}/>
+                <Review content={props.review}/>
+                <Done content={props.done}/>
             </div>
-        )
-    }
+        );
+
 }
 export default TaskBoard;

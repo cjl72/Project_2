@@ -1,14 +1,12 @@
 import React from 'react';
-class ToDo extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
+const ToDo = (props) => {
+
         return(
             <div className="board_piece todo">
                 <h1>To Do</h1>
+                    {props.content}
             </div>
         )
-    }
+
 };
 export default ToDo;

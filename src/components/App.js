@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import TaskBoard from './TaskBoard';
-import Task from './Task';
 import PageTabs  from './PageTabs';
 import ToDo from './ToDo';
 import InProgress from './InProgress';
@@ -19,13 +18,38 @@ class App extends React.Component {
         view: 'task board',
         browserWidth: 0,
         breakpoint: 'large-desktop',
-        singlePage: 'ToDo'
+        singlePage: 'ToDo',
+        tasks: [],
+        todo: [],
+        inprogress: [],
+        review: [],
+        done: []
     };
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
+        this.getData();
     }
+
+    getData() {
+        axios.get('http://my-json-server.typicode.com/cjl72/Project_2/posts')
+            .then(response => {
+               this.setState({tasks: response.data});
+            });
+    }
+
+    sortData(sortedList, typeTask) {
+        for (const [value] of this.tasks.entries()) {
+            if (typeTask === value.state.column) {
+                sortedList.push(<div className="task">
+                    <h1>{value.title}</h1>
+                    <p>ID: {value.id}</p>
+                    <p>Type: {value.type}</p>
+                </div>)
+            }
+        }
+    };
 
     getSingleView() {
         const singlePage = this.state.singlePage;
@@ -78,6 +102,11 @@ class App extends React.Component {
     render() {
         const {breakpoint} = this.state;
         const page = this.getSingleView();
+        this.sortData(this.todo, "todo");
+        this.sortData(this.inprogress, "in-progress");
+        this.sortData(this.review, "review");
+        this.sortData(this.done, "done");
+
 
         switch (breakpoint) {
             case 'large-desktop' :
