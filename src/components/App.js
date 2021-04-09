@@ -29,7 +29,6 @@ class App extends React.Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
-        this.getData();
     }
 
     getData() {
@@ -100,6 +99,7 @@ class App extends React.Component {
     }
 
     render() {
+        this.getData();
         const {breakpoint} = this.state;
         const page = this.getSingleView();
         this.sortData(this.todo, "todo");
