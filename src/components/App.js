@@ -39,13 +39,13 @@ class App extends React.Component {
     }
 
     sortData(sortedList, typeTask) {
-        for (const [value] of this.tasks.entries()) {
-            if (typeTask === value.state.column) {
+        for (const [value] of this.state.tasks.entries()) {
+            if (typeTask === value.column) {
                 sortedList.push(<div className="task">
                     <h1>{value.title}</h1>
                     <p>ID: {value.id}</p>
                     <p>Type: {value.type}</p>
-                </div>)
+                </div>);
             }
         }
     };
@@ -54,16 +54,16 @@ class App extends React.Component {
         const singlePage = this.state.singlePage;
 
         if (singlePage === 'ToDo') {
-            return <ToDo/>;
+            return <ToDo content={this.state.todo}/>;
         }
         if (singlePage === 'InProgress') {
-            return <InProgress/>;
+            return <InProgress content={this.state.inprogress}/>;
         }
         if (singlePage === 'Review') {
-            return <Review/>;
+            return <Review content={this.state.review}/>;
         }
         if (singlePage === 'Done') {
-            return <Done/>;
+            return <Done content={this.state.done}/>;
         }
     }
 
@@ -106,6 +106,7 @@ class App extends React.Component {
         this.sortData(this.inprogress, "in-progress");
         this.sortData(this.review, "review");
         this.sortData(this.done, "done");
+        console.log(this.todo);
 
 
         switch (breakpoint) {
